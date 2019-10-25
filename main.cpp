@@ -51,22 +51,7 @@ void plotpixels(GLint h, GLint k, GLint x, GLint y)
 	draw_pixel(-y + h, -x + k);
 }
 
-void draw_circle(GLint h, GLint k, GLint r)
-{
-	GLint d = 1 - r, x = 0, y = r;
-	while (y>x)
-	{
-		plotpixels(h, k, x, y);
-		if (d<0) d += 2 * x + 3;
-		else
-		{
-			d += 2 * (x - y) + 5;
-			--y;
-		}
-		++x;
-	}
-	plotpixels(h, k, x, y);
-}
+
 
 void sahidMinar()
 {
@@ -602,152 +587,57 @@ glBegin(GL_QUADS);
 	glVertex2f(0 + i*.8,630);
 
 	glEnd();
-
-
-
     glFlush ();
-
 }
-
-
-
-
-
 
 void idle()
 {
-glClearColor(1.0,1.0,1.0,1.0);
-if(c==0 )
- {
-
-	 i+=2;
-
-     m+=0.2;
-
-
-
-
- }
-
-
-if(c==3){
-i-=10;
-
-}
-
-
-if(c==2){
-i-=i;
-
-}
-
-
-else
- {
-
-     i+=SPEED/10;
-
-     m+=0.2;
-
-
-
- }
-if(i>1630)
-	 i=0.0;
-if(m>80){
-	 m=0.0;
-	 w=0;
-}
-glutPostRedisplay();
-
-}
-
-
-
-
-
-
-
-
-
-
-
-void keyboardFunc( unsigned char key, int x, int y )
-{
-switch( key )
+    glClearColor(1.0,1.0,1.0,1.0);
+    if(c==0 )
     {
-
-		case 'S':
-	case 's':
- i=0.0;
- m=0.0;
+        i+=2;
+        m+=0.2;
+    }
 
 
- c=1;
-	break;
+    if(c==3){
+        i-=10;
+        }
 
-	case 'w':
-	case 'W':
-	c=2;
-	break;
-case 'a':
-case 'A':
-	c=1;
-break;
-
-	case 'D':
-	case 'd':
-		c=0;
-		break;
-
-		case 'q':
-	case 'Q':
-		c=3;
-		break;
-
-
-
-    };
+    if(c==2){
+        i-=i;
+        }
+    else{
+     i+=SPEED/10;
+     m+=0.2;
+    }
+    if(i>1630)
+        i=0.0;
+    if(m>80){
+        m=0.0;
+        w=0;
+    }
+    glutPostRedisplay();
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 void myinit()
 {
-glClearColor(1.0,1.0,1.0,1.0);
-glColor3f(0.0,0.0,1.0);
-glPointSize(2.0);
-glMatrixMode(GL_PROJECTION);
-glLoadIdentity();
-gluOrtho2D(0.0, 960.0, 0.0, 642.0);
+    glClearColor(1.0,1.0,1.0,1.0);
+    glColor3f(0.0,0.0,1.0);
+    glPointSize(2.0);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluOrtho2D(0.0, 960.0, 0.0, 642.0);
 }
-
 
 
 void display()
 {
-
-
-glClear(GL_COLOR_BUFFER_BIT);
-draw_object();
-
-glFlush();
+    glClear(GL_COLOR_BUFFER_BIT);
+    draw_object();
+    glFlush();
 }
-
-
-
-
-
 
 int main(int argc,char** argv)
 {
@@ -755,13 +645,10 @@ int main(int argc,char** argv)
 	glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB);
     glutInitWindowSize (1200, 700);
     glutInitWindowPosition (0, 0);
-	glutCreateWindow("National Assembly Building");
+	glutCreateWindow("Shaheed Minar");
 	glutDisplayFunc(display);
 	glutIdleFunc(idle);
-	glutKeyboardFunc(keyboardFunc);
-
 	myinit();
-
 	glutMainLoop();
 	return 0;
 }
